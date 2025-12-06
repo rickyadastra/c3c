@@ -720,6 +720,9 @@ static void init_asm_x86(PlatformTarget* target)
 	reg_instr_clob(target, "popcntw", cc_flag_mask, "w:r16, r16/mem");
 	reg_instr_clob(target, "popcntl", cc_flag_mask, "w:r32, r32/mem");
 	reg_instr_clob(target, "popcntq", cc_flag_mask, "w:r64, r64/mem");
+	// Interrupt
+	reg_instr_clob(target, "cli", cc_flag_mask, NULL);
+	reg_instr_clob(target, "sti", cc_flag_mask, NULL);
 
 	target->clobber_name_list = X86ClobberNames;
 	target->extra_clobbers = "~{flags},~{dirflag},~{fspr}";
