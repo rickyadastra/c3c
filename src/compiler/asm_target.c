@@ -731,6 +731,9 @@ static void init_asm_x86(PlatformTarget* target)
 	// MSR
 	reg_instr_clob(target, "rdmsr", clobbers_make_from(rax_mask, X86_RDX, -1), NULL);
 	reg_instr(target, "wrmsr", NULL);
+	// Misc
+	reg_instr_clob(target, "rdrand", cc_flag_mask, "w:r16/r32/r64");
+	reg_instr_clob(target, "rdseed", cc_flag_mask, "w:r16/r32/r64");
 
 	target->clobber_name_list = X86ClobberNames;
 	target->extra_clobbers = "~{flags},~{dirflag},~{fspr}";
