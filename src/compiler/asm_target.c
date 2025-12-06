@@ -687,6 +687,7 @@ static void init_asm_x86(PlatformTarget* target)
 	reg_instr_clob(target, "subq", rax_cc_mask, "rw:r64/mem, r64/mem/immi32/imm64");
 	reg_instr_clob(target, "cpuid",  clobbers_make_from(cc_flag_mask, X86_RAX, X86_RBX, X86_RCX, X86_RDX, -1), NULL);
 	reg_instr(target, "hlt", NULL);
+	reg_instr(target, "pause", NULL);
 	reg_instr(target, "in", "w:r8/r16/r32, r16/imm8"); // Actually ensure reg_al_ax and dx
 	reg_instr(target, "out", "r16/imm8, r8/r16/r32"); // Actually ensure reg_al_ax and dx
 	reg_instr_clob(target, "incb", cc_flag_mask, "rw:r8/mem");
