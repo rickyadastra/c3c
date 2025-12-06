@@ -724,6 +724,12 @@ static void init_asm_x86(PlatformTarget* target)
 	// Interrupt
 	reg_instr_clob(target, "cli", cc_flag_mask, NULL);
 	reg_instr_clob(target, "sti", cc_flag_mask, NULL);
+	// Descriptor
+	reg_instr(target, "lgdt", "mem");
+	reg_instr(target, "lidt", "mem");
+	// MSR
+	reg_instr_clob(target, "rdmsr", clobbers_make_from(rax_mask, X86_RDX, -1), NULL);
+	reg_instr(target, "wrmsr", NULL);
 
 	target->clobber_name_list = X86ClobberNames;
 	target->extra_clobbers = "~{flags},~{dirflag},~{fspr}";
