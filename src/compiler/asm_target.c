@@ -604,6 +604,9 @@ static void init_asm_x86(PlatformTarget* target)
 		reg_instr_clob(target, "syscall", clobbers_make_from(cc_flag_mask, X86_RAX, X86_R11, X86_RCX, -1), NULL);
 		reg_instr(target, "pushq", "r64/mem");
 		reg_instr(target, "popq", "w:r64/mem");
+
+		reg_instr(target, "pushfq", NULL);
+		reg_instr_clob(target, "popfq", cc_flag_mask, NULL);
 	}
 	reg_instr_clob(target, "adcb", cc_flag_mask, "rw:r8/mem, r8/mem/imm8");
 	reg_instr_clob(target, "adcw", cc_flag_mask, "rw:r16/mem, r16/mem/imm16/immi8");
@@ -709,6 +712,10 @@ static void init_asm_x86(PlatformTarget* target)
 	reg_instr(target, "push", "imm8");
 	reg_instr(target, "pushw", "r16/mem/imm16");
 	reg_instr(target, "popw", "w:r16/mem");
+	reg_instr(target, "pushf", NULL);
+	reg_instr(target, "pushfd", NULL);
+	reg_instr_clob(target, "popf", cc_flag_mask, NULL);
+	reg_instr_clob(target, "popfd", cc_flag_mask, NULL);
 
 	reg_instr_clob(target, "popcntw", cc_flag_mask, "w:r16, r16/mem");
 	reg_instr_clob(target, "popcntl", cc_flag_mask, "w:r32, r32/mem");
